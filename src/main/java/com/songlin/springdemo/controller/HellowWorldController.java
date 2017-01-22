@@ -14,7 +14,7 @@ public class HellowWorldController {
 	public String sayHello(@RequestParam(value = "name",required = false, defaultValue = "sb")String name ,Model model){
 		
 		model.addAttribute("name", name);
-		System.out.println("2wwwwwwwwww222");
+		System.out.println("2wwwwssssswwww222");
 		return "sayHello";
 	}
 	

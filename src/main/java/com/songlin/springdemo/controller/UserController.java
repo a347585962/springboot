@@ -1,13 +1,10 @@
 package com.songlin.springdemo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import com.songlin.springdemo.model.User;
 import com.songlin.springdemo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,7 +15,7 @@ public class UserController {
 	private UserService service;
 
 	/**
-	 * 查询用户列表试试
+	 * 查询用户列表
 	 * @return
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -33,8 +30,24 @@ public class UserController {
 		return users;
 	}
 
+	@RequestMapping(value = "/#{id}", method = RequestMethod.GET)
+	@ResponseBody
+	public User getUserById(@PathVariable long id){
 
+		// url中的id可通过@PathVariable绑定到函数的参数中
+		//@RequestParam(value = "id",required = false, defaultValue = "111")
+		User user = service.getUserInfoById(id);
+		return user;
 
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public int addUser(User user){
+
+		int result = service.addUser(user);
+		return result;
+
+	}
 
 
 }
